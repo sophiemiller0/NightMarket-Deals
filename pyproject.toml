@@ -1,0 +1,4 @@
+[project]
+name = "nightmarket_deals"
+version = "0.0.1"
+description = "Solo project to curate night market deals"
