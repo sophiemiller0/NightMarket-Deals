@@ -12,5 +12,6 @@ def merge_deals(deals: Iterable[Deal]) -> List[Deal]:
             continue
         seen.add(key)
         out.append(d)
-    out.sort(key=lambda x: x.created_at, reverse=True)
+    # 次级排序：时间降序，其次价格升序，最后标题字典序，稳定输出
+    out.sort(key=lambda x: (x.created_at, -x.price, x.title.lower()), reverse=True)
     return out
