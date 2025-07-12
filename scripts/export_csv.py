@@ -4,6 +4,7 @@ from datetime import datetime, timedelta
 from pathlib import Path
 from src.models import Deal
 from src.merge import merge_deals
+from scripts.filter import filter_deals
 
 def mock_source() -> list[Deal]:
     base = datetime(2025, 4, 21, 19, 12, 7)
@@ -23,6 +24,8 @@ def export_csv(deals, path: Path):
 
 def main():
     deals = merge_deals(mock_source())
+    # 简单过滤示例：只保留价格 >= 10 的记录
+    deals = filter_deals(deals, min_price=10)
     export_csv(deals, Path('data/deals.csv'))
     print(f'exported {len(deals)} deals -> data/deals.csv')
 
